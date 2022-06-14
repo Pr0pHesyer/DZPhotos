@@ -22,15 +22,15 @@ import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
-import com.example.android.marsphotos.network.MarsPhoto
-import com.example.android.marsphotos.overview.MarsApiStatus
+import com.example.android.marsphotos.network.DZPhoto
+import com.example.android.marsphotos.overview.DZApiStatus
 import com.example.android.marsphotos.overview.PhotoGridAdapter
 
 /**
  * Updates the data shown in the [RecyclerView].
  */
 @BindingAdapter("listData")
-fun bindRecyclerView(recyclerView: RecyclerView, data: List<MarsPhoto>?) {
+fun bindRecyclerView(recyclerView: RecyclerView, data: List<DZPhoto>?) {
     val adapter = recyclerView.adapter as PhotoGridAdapter
     adapter.submitList(data)
 }
@@ -50,23 +50,23 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
 }
 
 /**
- * This binding adapter displays the [MarsApiStatus] of the network request in an image view.  When
+ * This binding adapter displays the [DZApiStatus] of the network request in an image view.  When
  * the request is loading, it displays a loading_animation.  If the request has an error, it
  * displays a broken image to reflect the connection error.  When the request is finished, it
  * hides the image view.
  */
 @BindingAdapter("marsApiStatus")
-fun bindStatus(statusImageView: ImageView, status: MarsApiStatus?) {
+fun bindStatus(statusImageView: ImageView, status: DZApiStatus?) {
     when (status) {
-        MarsApiStatus.LOADING -> {
+        DZApiStatus.LOADING -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.loading_animation)
         }
-        MarsApiStatus.ERROR -> {
+        DZApiStatus.ERROR -> {
             statusImageView.visibility = View.VISIBLE
             statusImageView.setImageResource(R.drawable.ic_connection_error)
         }
-        MarsApiStatus.DONE -> {
+        DZApiStatus.DONE -> {
             statusImageView.visibility = View.GONE
         }
     }

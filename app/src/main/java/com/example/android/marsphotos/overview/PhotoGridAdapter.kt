@@ -22,24 +22,24 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.android.marsphotos.databinding.GridViewItemBinding
-import com.example.android.marsphotos.network.MarsPhoto
+import com.example.android.marsphotos.network.DZPhoto
 
 /**
  * This class implements a [RecyclerView] [ListAdapter] which uses Data Binding to present [List]
  * data, including computing diffs between lists.
  */
 class PhotoGridAdapter :
-    ListAdapter<MarsPhoto, PhotoGridAdapter.MarsPhotosViewHolder>(DiffCallback) {
+    ListAdapter<DZPhoto, PhotoGridAdapter.DZPhotosViewHolder>(DiffCallback) {
 
     /**
      * The MarsPhotosViewHolder constructor takes the binding variable from the associated
-     * GridViewItem, which nicely gives it access to the full [MarsPhoto] information.
+     * GridViewItem, which nicely gives it access to the full [DZPhoto] information.
      */
-    class MarsPhotosViewHolder(
+    class DZPhotosViewHolder(
         private var binding: GridViewItemBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-        fun bind(marsPhoto: MarsPhoto) {
-            binding.photo = marsPhoto
+        fun bind(dzPhoto: DZPhoto) {
+            binding.photo = dzPhoto
             // This is important, because it forces the data binding to execute immediately,
             // which allows the RecyclerView to make the correct view size measurements
             binding.executePendingBindings()
@@ -48,15 +48,15 @@ class PhotoGridAdapter :
 
     /**
      * Allows the RecyclerView to determine which items have changed when the [List] of
-     * [MarsPhoto] has been updated.
+     * [DZPhoto] has been updated.
      */
-    companion object DiffCallback : DiffUtil.ItemCallback<MarsPhoto>() {
-        override fun areItemsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
-            return oldItem.id == newItem.id
+    companion object DiffCallback : DiffUtil.ItemCallback<DZPhoto>() {
+        override fun areItemsTheSame(oldItem: DZPhoto, newItem: DZPhoto): Boolean {
+            return false
         }
 
-        override fun areContentsTheSame(oldItem: MarsPhoto, newItem: MarsPhoto): Boolean {
-            return oldItem.imgSrcUrl == newItem.imgSrcUrl
+        override fun areContentsTheSame(oldItem: DZPhoto, newItem: DZPhoto): Boolean {
+            return oldItem.url == newItem.url
         }
     }
 
@@ -66,8 +66,8 @@ class PhotoGridAdapter :
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
-    ): MarsPhotosViewHolder {
-        return MarsPhotosViewHolder(
+    ): DZPhotosViewHolder {
+        return DZPhotosViewHolder(
             GridViewItemBinding.inflate(LayoutInflater.from(parent.context))
         )
     }
@@ -75,8 +75,8 @@ class PhotoGridAdapter :
     /**
      * Replaces the contents of a view (invoked by the layout manager)
      */
-    override fun onBindViewHolder(holder: MarsPhotosViewHolder, position: Int) {
-        val marsPhoto = getItem(position)
-        holder.bind(marsPhoto)
+    override fun onBindViewHolder(holder: DZPhotosViewHolder, position: Int) {
+        val dzPhoto = getItem(position)
+        holder.bind(dzPhoto)
     }
 }

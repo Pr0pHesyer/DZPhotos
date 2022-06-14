@@ -20,11 +20,11 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.android.marsphotos.network.MarsApi
-import com.example.android.marsphotos.network.MarsPhoto
+import com.example.android.marsphotos.network.DZApi
+import com.example.android.marsphotos.network.DZPhoto
 import kotlinx.coroutines.launch
 
-enum class MarsApiStatus { LOADING, ERROR, DONE }
+enum class DZApiStatus { LOADING, ERROR, DONE }
 
 /**
  * The [ViewModel] that is attached to the [OverviewFragment].
@@ -32,38 +32,38 @@ enum class MarsApiStatus { LOADING, ERROR, DONE }
 class OverviewViewModel : ViewModel() {
 
     // The internal MutableLiveData that stores the status of the most recent request
-    private val _status = MutableLiveData<MarsApiStatus>()
+    private val _status = MutableLiveData<DZApiStatus>()
 
     // The external immutable LiveData for the request status
-    val status: LiveData<MarsApiStatus> = _status
+    val status: LiveData<DZApiStatus> = _status
 
     // Internally, we use a MutableLiveData, because we will be updating the List of MarsPhoto
     // with new values
-    private val _photos = MutableLiveData<List<MarsPhoto>>()
+    private val _photos = MutableLiveData<List<DZPhoto>>()
 
     // The external LiveData interface to the property is immutable, so only this class can modify
-    val photos: LiveData<List<MarsPhoto>> = _photos
+    val photos: LiveData<List<DZPhoto>> = _photos
 
     /**
      * Call getMarsPhotos() on init so we can display status immediately.
      */
     init {
-        getMarsPhotos()
+        getDZPhotos()
     }
 
     /**
      * Gets Mars photos information from the Mars API Retrofit service and updates the
-     * [MarsPhoto] [List] [LiveData].
+     * [DZPhoto] [List] [LiveData].
      */
-    private fun getMarsPhotos() {
+    private fun getDZPhotos() {
 
         viewModelScope.launch {
-            _status.value = MarsApiStatus.LOADING
+            _status.value = DZApiStatus.LOADING
             try {
-                _photos.value = MarsApi.retrofitService.getPhotos()
-                _status.value = MarsApiStatus.DONE
+                _photos.value = DZApi.retrofitService.getPhotos()
+                _status.value = DZApiStatus.DONE
             } catch (e: Exception) {
-                _status.value = MarsApiStatus.ERROR
+                _status.value = DZApiStatus.ERROR
                 _photos.value = listOf()
             }
         }

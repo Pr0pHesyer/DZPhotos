@@ -22,15 +22,15 @@
     <data>
         <variable
             name="photo"
-            type="com.example.android.marsphotos.network.MarsPhoto" />
+            type="com.example.android.marsphotos.network.DZPhoto" />
     </data>
     <ImageView
-        android:id="@+id/mars_image"
+        android:id="@+id/dz_image"
         android:layout_width="wrap_content"
         android:layout_height="170dp"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:padding="2dp"
-        app:imageUrl="@{photo.imgSrcUrl}"
-        tools:src="@tools:sample/backgrounds/scenic"/>
+        app:imageUrl="@{photo.url}"
+        tools:src="@tools:sample/backgrounds/scenic" />
 </layout>
