@@ -60,7 +60,7 @@ class OverviewViewModel : ViewModel() {
         viewModelScope.launch {
             _status.value = DZApiStatus.LOADING
             try {
-                _photos.value = DZApi.retrofitService.getPhotos()
+                _photos.value = listOf(DZApi.retrofitService.getPhotos())
                 _status.value = DZApiStatus.DONE
             } catch (e: Exception) {
                 _status.value = DZApiStatus.ERROR

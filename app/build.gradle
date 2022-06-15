@@ -32,10 +32,14 @@ android {
         multiDexEnabled true
     }
 
+
     buildTypes {
         release {
             minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+        customDebugType {
+            debuggable true
         }
     }
     buildFeatures {

@@ -51,7 +51,7 @@ interface DZApiService {
      * HTTP method
      */
     @GET("randomdj?r=0")
-    suspend fun getPhotos(): List<DZPhoto>
+    suspend fun getPhotos(): DZPhoto
 }
 
 /**
