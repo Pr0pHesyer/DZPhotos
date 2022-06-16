@@ -27,7 +27,7 @@
     <ImageView
         android:id="@+id/dz_image"
         android:layout_width="wrap_content"
-        android:layout_height="170dp"
+        android:layout_height="wrap_content"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
         android:padding="2dp"

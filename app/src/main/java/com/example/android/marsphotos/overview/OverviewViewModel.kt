@@ -31,6 +31,9 @@ enum class DZApiStatus { LOADING, ERROR, DONE }
  */
 class OverviewViewModel : ViewModel() {
 
+    private val _isLoading = MutableLiveData<Boolean>()
+    val isLoading: LiveData<Boolean> = _isLoading
+
     // The internal MutableLiveData that stores the status of the most recent request
     private val _status = MutableLiveData<DZApiStatus>()
 
@@ -67,5 +70,11 @@ class OverviewViewModel : ViewModel() {
                 _photos.value = listOf()
             }
         }
+    }
+
+    fun onRefresh(){
+        _isLoading.value = true
+        getDZPhotos()
+        _isLoading.value = false
     }
 }
